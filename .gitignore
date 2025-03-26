@@ -1,1 +1,2 @@
+# Ignore all `etc` folders inside any subdirectory
 **/etc/
