@@ -1,30 +1,49 @@
-# 🛡️ Uniswap one version at a time
+# 🛡️ Uniswap V2 — Scroll One
 
-Welcome to **uniswap-audits** — my personal journey to understand and dissect every version of Uniswap, from **V2 through V4**. I'm not here to just read the docs. I'm here to become the doc. 📜✨
+This is my personal exploration of Uniswap V2 —  
+an attempt to understand each contract line by line, not just for knowledge, but for discipline.
 
-## 💡 Why?
+---
 
-I want to master smart contract security by starting with the most iconic DeFi protocol in existence. Uniswap is complex, battle-tested, and beautiful — which makes it the perfect training ground for an aspiring auditor like me.
+## 💡 Why start here?
 
-## 🔍 What's inside?
+Uniswap V2 is simple, elegant, and still foundational to DeFi.  
+Studying it teaches more than just DEX mechanics — it teaches restraint, logic, and attention to small details.
 
-- 📘 Fully annotated breakdowns of every major Uniswap contract
-- 🧠 Audit-style notes, edge case thinking, and spicy observations
-- 🧪 Optional test cases for hands-on exploration
-- 🧰 Terminology cheat sheets and my own audit templates
-- 🧬 Vibes. So many vibes.
+I’m approaching this slowly, as a student of smart contract security.  
+Not to critique, but to understand.
 
-## 🗂️ Folder Structure
+---
 
-Check the root folders for:
+## 🔍 What this scroll contains
 
-- `V2/`, `V3/`, and `V4/`: One subfolder per version
-- `Templates/`: My custom audit format + terminology notes
-- `Tests/`: Where I break things for fun
+- Annotated breakdowns of core V2 contracts (`Pair`, `Factory`, `Router`)
+- Custom test cases (sandboxed on a forked mainnet)
+- Security-focused edge case experiments
+- Quiet thoughts. No noise. Just code and logic.
 
-## 🚀 Status
+---
 
-- ✅ `UniswapV2Pair.md` in progress
-- 🔜 `UniswapV2Factory.md`
-- 🔮 `UniswapV3Pool.md` (soon)
-- 🧙‍♀️ `Hooks/`
+## 📁 Folder Overview
+
+- `UniswapV2Pair.md` — notes + reasoning per function
+- `notes/` — deep dives into math, overflow, price behavior
+- `sandbox-tests/`
+  - `/audit/`: tests designed to stress or exploit
+  - `/general/`: tests meant to observe and understand
+
+---
+
+## 🛠️ In Progress
+
+| Scroll    | Status                               |
+| --------- | ------------------------------------ |
+| `Pair`    | Burn, Mint, and Swap nearly complete |
+| `Factory` | Next focus                           |
+| `Router`  | Coming later                         |
+
+---
+
+> This repo is part of a larger effort to study Uniswap from V2 through V4.  
+> I’m taking my time.  
+> qTee
