@@ -11,13 +11,14 @@ It doesn’t just hand you what you _ask for_ — it gives you exactly what you 
 
 Because your LP tokens represent your share of the pool — and the math makes sure the invariant stays true.
 
-## Walk-through
+## Walk-through ♥
 
 Liquidity providers (LP) were minted a number LP tokens when they provided liquidity (`mint`), these tokens represent their _share_ of cette UniswapPair.
 
-`Burn` is used when a user wants to remove liquidity from the pool.
-The amount of LP tokens the Pair contract holds at that moment is what determines how much liquidity will be removed — it’s not about validating ownership, but simply burning however many LP tokens were sent to the contract.
-The user controls how much liquidity they remove by sending in LP tokens — the contract just follows the math.
+The burn() function is how a user cashes out their liquidity.
+They don’t "ask" to remove liquidity — they send in their LP tokens, and the contract burns them.
+Your LP tokens are your proof.
+The Pair contract doesn’t care who you are — it just looks at how many LP tokens it’s holding and gives you back your share of token0/token1 accordingly.
 
 The genius that is Uniswap does not keep track of LP tokens per address. _Let us take this step by step._
 
@@ -161,4 +162,37 @@ So anyways, back to the point, back to the math trick, and no re-circling this t
 2. Multiply this with balance0/1 (the freshly feched balance of token0 as per token0/1 ERC20 contract)
 3. Divide the answer with totalSupply of LP tokens minted
 
-If the result of the above step is less than
+This calculates how much token0 and token1 you’re entitled to, based on the **LP tokens currently held by the Pair contract.**  
+In other words:  
+**You get your share of the pool's current reserves — not what you originally added.**  
+Uniswap doesn't care about the past.  
+**It only cares about the current state of the pool.**  
+You gotta stay on the curve, bruh —  
+**your payout is always based on the pool's reality _right now_, not when you added liquidity.**
+
+---
+
+### Burn, turn around & Transfer
+
+After all that freaky math, we are finally at a place where we are ready to do the transfer.
+
+```solidity
+  _burn(address(this), liquidity);
+  _safeTransfer(_token0, to, amount0);
+  _safeTransfer(_token1, to, amount1);
+  balance0 = IERC20(_token0).balanceOf(address(this));
+  balance1 = IERC20(_token1).balanceOf(address(this));
+
+  _update(balance0, balance1, _reserve0, _reserve1);
+  if (feeOn) kLast = uint(reserve0).mul(reserve1); // reserve0 and reserve1 are up-to-date
+  emit Burn(msg.sender, amount0, amount1, to);
+```
+
+The contract has done its job, it knows the amount of token0 and token1 to tranfer out of the pool based on the LP tokens received - **Our invariant _x \* y = k_ is safe and dandy.**
+
+Now the contract:
+
+1. Burns the transfered LP tokens
+2. Transfers the correct amounts of each token.
+3. Fetches the new pool balances by calling their ERC20 contracts.
+4. Sends the newly fetched balances to `_update` so the pool state stays a-jour.
