@@ -148,7 +148,7 @@ If you did, math will hand you your pro-rata share. No questions asked.**
 
 ---
 
-So anyways, back to the point, back to the math trick, and no re-circling this time, I promise.
+So anyways, back to the point; the math trick, and no re-circling this time, I promise.
 
 ```solidity
     uint _totalSupply = totalSupply; // gas savings, must be defined here since totalSupply can update in _mintFee
