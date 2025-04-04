@@ -15,10 +15,9 @@ Because your LP tokens represent your share of the pool — and the math makes s
 
 Liquidity providers (LP) were minted a number LP tokens when they provided liquidity (`mint`), these tokens represent their _share_ of cette UniswapPair.
 
-The burn() function is how a user cashes out their liquidity.
-They don’t "ask" to remove liquidity — they send in their LP tokens, and the contract burns them.
-Your LP tokens are your proof.
-The Pair contract doesn’t care who you are — it just looks at how many LP tokens it’s holding and gives you back your share of token0/token1 accordingly.
+The `burn()` function is called in the context of an LP cashing out their liquidity.
+They don’t "ask" to remove liquidity — they send in their LP tokens, and the contract burns them. These LP tokens are the proof the caller ever even provided liquidity to the pool.
+The Pair contract doesn’t care nor know who you are — it just looks at how many LP tokens it’s holding (have been sent to it prior to `burn`) and gives you back your share of token0/token1 accordingly.
 
 The genius that is Uniswap does not keep track of LP tokens per address. _Let us take this step by step._
 
