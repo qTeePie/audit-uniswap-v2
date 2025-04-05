@@ -1,4 +1,4 @@
-# Swap
+# Update
 
 **How does Uniswap's `_update()` make sure that users can swap tokens — without breaking the `x * y = k` formula?**
 
