@@ -2,6 +2,10 @@
 
 **How does Uniswap's `_update()` make sure that users can swap tokens — without breaking the `x * y = k` formula?**
 
+### Visibility
+
+The function is private, meaning it can only be called within the same contract.
+
 ### Parameters
 
 `_update` takes four parameters. These can be separated into two logical groups:

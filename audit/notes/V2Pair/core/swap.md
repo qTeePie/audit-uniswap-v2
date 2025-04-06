@@ -36,7 +36,7 @@ function swap(uint amount0Out, uint amount1Out, address to, bytes calldata data)
 }
 ```
 
-Swap starts of with some requires which checks that either (or both) amount0Out or amount1Out is more than 0.
+Swap starts of requiring either (or both) amount0Out or amount1Out to be more than 0.
 
 **AmountOut** represents the amount of tokens want to get OUT of the pool, it is the _dy_ in regards to the invariant **y in x\*y=k**.
 Either of these to parameters (0/1) needs to be over 0, cause there needs to be some sort of withdrawal of tokens from the pool for the `swap` to happen.
