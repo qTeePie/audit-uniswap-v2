@@ -1,49 +1,66 @@
-# 🛡️ Uniswap V2 — Scroll One
+## Foundry
 
-This is my personal exploration of Uniswap V2 —  
-an attempt to understand each contract line by line, not just for knowledge, but for discipline.
+**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
 
----
+Foundry consists of:
 
-## 💡 Why start here?
+-   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
+-   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
+-   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
+-   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
 
-Uniswap V2 is simple, elegant, and still foundational to DeFi.  
-Studying it teaches more than just DEX mechanics — it teaches restraint, logic, and attention to small details.
+## Documentation
 
-I’m approaching this slowly, as a student of smart contract security.  
-Not to critique, but to understand.
+https://book.getfoundry.sh/
 
----
+## Usage
 
-## 🔍 What this scroll contains
+### Build
 
-- Annotated breakdowns of core V2 contracts (`Pair`, `Factory`, `Router`)
-- Custom test cases (sandboxed on a forked mainnet)
-- Security-focused edge case experiments
-- Quiet thoughts. No noise. Just code and logic.
+```shell
+$ forge build
+```
 
----
+### Test
 
-## 📁 Folder Overview
+```shell
+$ forge test
+```
 
-- `UniswapV2Pair.md` — notes + reasoning per function
-- `notes/` — deep dives into math, overflow, price behavior
-- `sandbox-tests/`
-  - `/audit/`: tests designed to stress or exploit
-  - `/general/`: tests meant to observe and understand
+### Format
 
----
+```shell
+$ forge fmt
+```
 
-## 🛠️ In Progress
+### Gas Snapshots
 
-| Scroll    | Status                               |
-| --------- | ------------------------------------ |
-| `Pair`    | Burn, Mint, and Swap nearly complete |
-| `Factory` | Next focus                           |
-| `Router`  | Coming later                         |
+```shell
+$ forge snapshot
+```
 
----
+### Anvil
 
-> This repo is part of a larger effort to study Uniswap from V2 through V4.  
-> I’m taking my time.  
-> qTee
+```shell
+$ anvil
+```
+
+### Deploy
+
+```shell
+$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+```
+
+### Cast
+
+```shell
+$ cast <subcommand>
+```
+
+### Help
+
+```shell
+$ forge --help
+$ anvil --help
+$ cast --help
+```
